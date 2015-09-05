@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
 
@@ -48,11 +49,15 @@ namespace prostaPogoda
             }
             temperatura.Text = response + "°C";
         }
-
+        public async void pobierzPogode()
+        {
+             pogoda.Source = new BitmapImage( new Uri("http://mnn.dsinf.net/2015/winphone/weather/api.php?" + "miasto=" + miasto.Text + "&cel=obrazek"));
+        }
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             pobierzTemperature();
+            pobierzPogode();
         }
     }
 }
