@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http;
+using Windows.Devices.Geolocation;
+using Windows.Services.Maps;
 
 namespace prostaPogoda
 {
@@ -54,6 +56,29 @@ namespace prostaPogoda
              pogoda.Source = new BitmapImage( new Uri("http://mnn.dsinf.net/2015/winphone/weather/api.php?" + "miasto=" + miasto.Text + "&cel=obrazek"));
         }
 
+        public async void pobierzMiasto()
+        {
+            var geolocator = new Geolocator();
+            geolocator.DesiredAccuracyInMeters = 100;
+            Geoposition position = await geolocator.GetGeopositionAsync();
+
+
+            BasicGeoposition myLocation = new BasicGeoposition
+            {
+                Longitude = position.Coordinate.Longitude,
+                Latitude = position.Coordinate.Latitude
+            };
+            Geopoint pointToReverseGeocode = new Geopoint(myLocation);
+
+            MapLocationFinderResult result = await MapLocationFinder.FindLocationsAtAsync(pointToReverseGeocode);
+
+            string town = result.Locations[0].Address.Town;
+            miasto.Text = town;
+        }
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            pobierzMiasto();
+        }
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             pobierzTemperature();
