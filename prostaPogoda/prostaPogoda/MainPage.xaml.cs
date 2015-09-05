@@ -30,7 +30,7 @@ namespace prostaPogoda
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            zaladujMiastio();
         }
 
         
@@ -75,6 +75,17 @@ namespace prostaPogoda
             string town = result.Locations[0].Address.Town;
             miasto.Text = town;
         }
+
+        private void zaladujMiastio()
+        {
+            if (Windows.Storage.ApplicationData.Current.RoamingSettings.Values["miasto"]!=null)
+                miasto.Text = Windows.Storage.ApplicationData.Current.RoamingSettings.Values["miasto"].ToString();
+        }
+        private void zapiszMiasto()
+        {
+            Windows.Storage.ApplicationData.Current.RoamingSettings.Values["miasto"] = miasto.Text;
+        }
+
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             pobierzMiasto();
@@ -83,6 +94,11 @@ namespace prostaPogoda
         {
             pobierzTemperature();
             pobierzPogode();
+        }
+
+        private void miasto_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            zapiszMiasto();
         }
     }
 }
