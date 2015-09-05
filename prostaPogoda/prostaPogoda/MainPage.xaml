@@ -11,8 +11,8 @@
     <Grid>
         <TextBox x:Name="miasto" HorizontalAlignment="Left" Margin="10,76,0,0" TextWrapping="Wrap" Text="Kraków" VerticalAlignment="Top" Width="257"/>
         <Button x:Name="button1" Content="GPS" HorizontalAlignment="Left" Margin="281,67,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button2" Content="załaduj pogodę" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Width="380" Height="82"/>
-        <TextBlock x:Name="temperatura" HorizontalAlignment="Left" Margin="142,471,0,0" TextWrapping="Wrap" Text="temperatura" VerticalAlignment="Top" FontSize="26.667" SelectionChanged="temperatura_SelectionChanged" Width="179"/>
+        <Button x:Name="button2" Content="załaduj pogodę" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Width="380" Height="82" Click="button2_Click"/>
+        <TextBlock x:Name="temperatura" HorizontalAlignment="Left" Margin="142,471,0,0" TextWrapping="Wrap" Text="temperatura" VerticalAlignment="Top" FontSize="26.667" Width="179"/>
         <Image x:Name="pogoda" HorizontalAlignment="Left" Height="100" Margin="24,439,0,0" VerticalAlignment="Top" Width="100"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Prosta Pogoda - MNN2015" VerticalAlignment="Top" FontSize="24"/>
 
